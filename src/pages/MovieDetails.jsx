@@ -1,17 +1,6 @@
-const MovieDetails = (Title,Year,Type,Poster) => {
+const MovieDetails = () => {
     return(
-        <>
-        <img src={Poster}/>
-        <div>
-            {Title}
-        </div>
-        <div>
-            Released in : {Year}
-        </div>
-        <div>
-            Type :{Type}
-        </div>
-        </>
+       <></>
     )
 }
 

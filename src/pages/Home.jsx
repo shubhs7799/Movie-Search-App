@@ -1,23 +1,18 @@
-import { useEffect } from "react";
 import MovieCard from "../components/MovieCard";
-import axios from "axios";
-import { searchMovie } from "../apis/omdb";
+import useMovieList from "../hooks/useMovieList";
 
-const Home = ()=> {
-    async function downDefaultMovie (movieName){
-        console.log(import.meta.env.VITE_API_KEY);
-
-        const response = await axios.get(searchMovie(movieName));
-        console.log(response.data)
-    }
-    useEffect(()=>{
-        downDefaultMovie("harry")
-    },[])
-    return(
-        <>
-        <MovieCard />
-        </>
-    )
+const Home = () => {
+  const { movieList } = useMovieList("harry", "avengers", "batman");
+  console.log(movieList);
+  return (
+    <>
+      {movieList.length > 0 &&
+        movieList.map((movie) => (
+          <MovieCard key={movie.imdbID} id={movie.imdbID} {...movie} />
+        ))}
+      <MovieCard />
+    </>
+  );
 };
 
 export default Home;
